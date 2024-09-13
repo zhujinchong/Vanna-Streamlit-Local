@@ -1,0 +1,13 @@
+chromadb
+openai
+ollama
+pandas
+plotly
+sqlparse
+PyMySQL
+cryptography
+flask
+flasgger
+flask_sock
+tabulate
+streamlit
