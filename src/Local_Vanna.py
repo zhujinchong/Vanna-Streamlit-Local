@@ -1,5 +1,5 @@
-from vanna.chromadb.chromadb_vector import ChromaDB_VectorStore
-from vanna.openai.openai_chat import OpenAI_Chat
+from .vanna.chromadb.chromadb_vector import ChromaDB_VectorStore
+from .vanna.openai.openai_chat import OpenAI_Chat
 import chromadb
 import openai
 import ollama
@@ -14,6 +14,7 @@ MYSQL_DB_NAME = 'test'
 MYSQL_USER_NAME = 'root'
 MYSQL_PASSWORD = '123456'
 MYSQL_PORT = 13306
+
 
 """
 use test;
@@ -54,12 +55,13 @@ class MyVanna(ChromaDB_VectorStore, OpenAI_Chat):
         OpenAI_Chat.__init__(self, client=client, config=config)
 
 
-vn = MyVanna(config={'model': OPENAI_MODEL})
-vn.connect_to_mysql(host=MYSQL_HOST, dbname=MYSQL_DB_NAME, user=MYSQL_USER_NAME, password=MYSQL_PASSWORD, port=MYSQL_PORT)
+if __name__ == '__main__':
+    vn = MyVanna(config={'model': OPENAI_MODEL})
+    vn.connect_to_mysql(host=MYSQL_HOST, dbname=MYSQL_DB_NAME, user=MYSQL_USER_NAME, password=MYSQL_PASSWORD, port=MYSQL_PORT)
 
 
-# vn.train(ddl='''create table Student(Sno char(3) not null primary key,Sname char(8) not null,Ssex char(2) not null,Sbirthday datetime,Class char(5));''')
-# vn.train(question='出生于1975年的学生有哪些？', sql='SELECT S.Sno, S.Sname FROM Student S WHERE YEAR(S.Sbirthday) = 1975;')
+    vn.train(ddl='''create table Student(Sno char(3) not null primary key,Sname char(8) not null,Ssex char(2) not null,Sbirthday datetime,Class char(5));''')
+    vn.train(question='出生于1975年的学生有哪些？', sql='SELECT S.Sno, S.Sname FROM Student S WHERE YEAR(S.Sbirthday) = 1975;')
 
-# resp = vn.ask('出生于1975年的学生有哪些？')
-# print(resp)
+    resp = vn.ask('出生于1975年的学生有哪些？')
+    print(resp)
