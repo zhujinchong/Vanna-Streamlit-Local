@@ -18,7 +18,7 @@ class ChromaDB_VectorStore(VannaBase):
         if config is None:
             config = {}
 
-        path = config.get("path", ".")
+        path = config.get("path", "./chroma_save")
         self.embedding_function = config.get("embedding_function", default_ef)
         curr_client = config.get("client", "persistent")
         collection_metadata = config.get("collection_metadata", None)

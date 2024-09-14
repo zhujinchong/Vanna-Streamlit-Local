@@ -5,7 +5,7 @@ import openai
 import ollama
 
 
-OPENAI_API_KEY = "sk-69c0f46a018e4f0e8ba480d3c5d932d5"
+OPENAI_API_KEY = "sk-"
 OPENAI_BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
 OPENAI_MODEL = "qwen2-1.5b-instruct"
 
@@ -33,12 +33,6 @@ client = openai.OpenAI(api_key=OPENAI_API_KEY, base_url=OPENAI_BASE_URL,)
 
 class MyEmbeddingFunction(chromadb.EmbeddingFunction):
     def __call__(self, texts: chromadb.Documents) -> chromadb.Embeddings:
-        # URL = "http://10.45.139.202:8776/sai/embedding/bce/v1"
-        # res = []
-        # for x in texts:
-            # resp = requests.post(url=URL, json={"sentences": [x]})
-            # res.append(resp.json()['results'][0])
-
         res = []
         for x in texts:
             resp = ollama.embeddings(

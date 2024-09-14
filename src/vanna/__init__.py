@@ -19,7 +19,7 @@ from .types import (
     UserEmail,
     UserOTP,
 )
-from .utils import sanitize_model_name, validate_config_path
+from .utils import validate_config_path
 
 api_key: Union[str, None] = None  # API key for Vanna.AI
 

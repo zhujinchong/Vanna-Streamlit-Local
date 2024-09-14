@@ -1,0 +1,19 @@
+# Python bytecode
+*.pyc
+
+# Logs
+*.log
+
+# Virtualenv
+venv/
+
+# Build
+build/
+dist/
+
+# IDE
+.vscode/
+.idea/
+
+
+chroma_save

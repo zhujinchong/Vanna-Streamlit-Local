@@ -12,7 +12,7 @@ def setup_vanna():
 @st.cache_data(show_spinner="Generating sample questions ...")
 def generate_questions_cached():
     vn = setup_vanna()
-    return vn.generate_questions()
+    return vn.generate_questions(question='test')
 
 
 @st.cache_data(show_spinner="Generating SQL query ...")
@@ -51,7 +51,8 @@ def generate_plot_cached(code, df):
 @st.cache_data(show_spinner="Generating followup questions ...")
 def generate_followup_cached(question, sql, df):
     vn = setup_vanna()
-    return vn.generate_followup_questions(question=question, sql=sql, df=df)
+    # return vn.generate_followup_questions(question=question, sql=sql, df=df)
+    return vn.generate_questions(question=question)
 
 @st.cache_data(show_spinner="Generating summary ...")
 def generate_summary_cached(question, df):
@@ -67,8 +68,8 @@ st.set_page_config(
 st.sidebar.title("Output Settings")
 st.sidebar.checkbox("Show SQL", value=True, key="show_sql")
 st.sidebar.checkbox("Show Table", value=True, key="show_table")
-st.sidebar.checkbox("Show Plotly Code", value=True, key="show_plotly_code")
-st.sidebar.checkbox("Show Chart", value=True, key="show_chart")
+st.sidebar.checkbox("Show Plotly Code", value=False, key="show_plotly_code")
+st.sidebar.checkbox("Show Chart", value=False, key="show_chart")
 st.sidebar.checkbox("Show Summary", value=True, key="show_summary")
 st.sidebar.checkbox("Show Follow-up Questions", value=True, key="show_followup")
 st.sidebar.button("Reset", on_click=lambda: set_question(None), use_container_width=True)

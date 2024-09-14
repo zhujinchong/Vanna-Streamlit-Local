@@ -319,7 +319,7 @@ class VannaBase(ABC):
         numbers_removed = re.sub(r"^\d+\.\s*", "", llm_response, flags=re.MULTILINE)
         return numbers_removed.split("\n")
 
-    def generate_questions(self, **kwargs) -> List[str]:
+    def generate_questions(self, question: str, **kwargs) -> List[str]:
         """
         **Example:**
         ```python
@@ -328,7 +328,7 @@ class VannaBase(ABC):
 
         Generate a list of questions that you can ask Vanna.AI.
         """
-        question_sql = self.get_similar_question_sql(question="", **kwargs)
+        question_sql = self.get_similar_question_sql(question=question, **kwargs)
 
         return [q["question"] for q in question_sql]
 
